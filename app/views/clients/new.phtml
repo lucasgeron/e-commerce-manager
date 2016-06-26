@@ -1,0 +1,33 @@
+<section>
+  <div class="page-header">
+    <?= ViewHelpers::linkTo("/clientes", '<i class="fa fa-arrow-left"></i>', "class='btn btn-primary'"); ?>
+    <h4 class="pull-right"><i class="fa fa-user"></i> Novo Cliente</h4>
+  </div>
+</section>
+
+<section>
+  <div class="bottom-division">
+    <ul class="nav nav-pills nav-justified">
+      <li class="active"><a data-toggle="pill" href="#pf"><i class="fa fa-user"></i> Pessoa Física</a></li>
+      <li><a data-toggle="pill" href="#pj"><i class="fa fa-bank"></i> Pessoa Jurídica</a></li>
+    </ul>
+  </div>
+
+  <?php require '_form.phtml' ?>
+
+  <div class="row ">
+    <div class="col-md-12">
+      <div class="tab-content top-division">
+        <br>
+        <div id="pf" class="tab-pane fade in active ">
+          <?php require '_form_pf.phtml' ?>
+        </div>
+        <div id="pj" class="tab-pane fade">
+          <?php require '_form_pj.phtml' ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary"> <?= $this->submit ?></button>
+</section>

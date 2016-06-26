@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group input-group">
+      <span class="input-group-addon"> Pedido ID</span>
+      <input disabled type="text" class="form-control" name="client[name]" value="<?= $this->order->getId() ?>" id="order_id">
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon">Atendente</span>
+      <input disabled type="text" class="form-control" name="client[name]" value="<?= $this->order->getuser()->getName() ?>" id="order_id">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group input-group">
+      <span class="input-group-addon">Email</span>
+      <input disabled type="text" class="form-control" name="client[name]" value="<?= $this->order->getuser()->getEmail() ?>" id="order_id">
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon">Data</span>
+      <input disabled type="text" class="form-control" name="client[name]" value="<?= ViewHelpers::dateFormat($this->order->getCreatedAt()) ?>" id="order_id">
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <form class="form" role="form" action="<?= ViewHelpers::urlFor('/pedidos/adiciona-produto') ?>" method="POST">
+      <input type='hidden' name='order_id' value='<?= $this->order->getid() ?>'>
+      <input type='hidden' name='product_id' id='product_id'>
+
+      <div class="input-group">
+        <input data-url="<?= ViewHelpers::urlFor('/produtos/auto_complete_search') ?>" type="text" class="form-control" name="search" id="autocomplete_products" placeholder="Adicionar Produto">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover table-bordered text-center ">
+      <thead>
+        <tr>
+          <th class="text-center">Produto</i></th>
+          <th class="text-center">Categoria</th>
+          <th class="text-center">Qtde</th>
+          <th class="text-center">Preço (Und.)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach($this->order->getProducts() as $product): ?>
+          <tr>
+            <td><?= $product->getName() ?></td>
+            <td><?= $product->getCategory()->getName() ?></td>
+            <td><?= ViewHelpers::linkTo("/pedidos/{$this->order->getId()}/{$product->getId()}/remove-unidade", '<button class="btn btn-primary btn-xs"><i class="fa fa-minus"></i></button>') ?> <?= $product->getAmount() ?> <?= ViewHelpers::linkTo("/pedidos/{$this->order->getId()}/{$product->getId()}/adiciona-unidade", '<button class="btn btn-primary btn-xs"><i class="fa fa-plus"></i></button>') ?></td>
+            <td><?= ViewHelpers::currencyFormat($product->getSellingPrice()) ?></td>
+            <td><?= ViewHelpers::linkTo("/pedidos/{$this->order->getId()}/{$product->getId()}/remove-produto", '<i class="fa fa-remove"></i>') ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+    <div class="bottom-division">
+      <h3 class="pull-right"><small> Total do Pedido:</small> <?= ViewHelpers::currencyFormat($this->order->getTotal($this->order->getId())) ?>
+      </div>
+    </div>
+  </div>

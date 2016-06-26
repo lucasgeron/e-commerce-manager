@@ -1,0 +1,19 @@
+<section>
+  <header class="text-center">
+    <h3> <?=  ViewHelpers::imageTag('black_logo.png', 'class="painel"'); ?> Provweb <small> Login</small </h3>
+    </header>
+
+    <form class="" action="<?= ViewHelpers::urlFor('/login') ?>" method="POST">
+      <div class="form-group input-group">
+        <span class="input-group-addon">Usuário</span>
+        <input type="text" class="form-control" name="user[email]" id="email" placeholder="Usuário@Servidor" value="<?= $this->user->getEmail() ?>" autofocus>
+      </div>
+
+      <div class="form-group input-group">
+        <span class="input-group-addon">Senha</span>
+        <input type="password" class="form-control" name="user[password]" id="password" placeholder="•••••">
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    </form>
+  </section>

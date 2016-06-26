@@ -1,0 +1,21 @@
+<section>
+  <div class="page-header">
+    <?= ViewHelpers::linkTo('/categorias', '<i class="fa fa-arrow-left"></i>', "class='btn btn-primary'"); ?>
+    <?= ViewHelpers::linkTo("/categorias/{$this->category->getId()}/editar", '<i class="fa fa-pencil-square-o"></i> Editar', "class='btn btn-primary'") ?>
+    <?= ViewHelpers::linkTo("/categorias/{$this->category->getId()}/deletar", '<i class="fa fa-times "></i> Deletar', "class='btn btn-primary'") ?>
+    <h4 class="pull-right"><i class="fa fa-file-text-o"></i> Detalhes: <small> Categoria ID: <?= $this->category->getId() ?></small></h4>
+  </div>
+</section>
+
+<section>
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <div class="form-group input-group">
+          <span class="input-group-addon">Nome</span>
+          <input type="text" class="form-control" value="<?= $this->category->getName() ?>" id="category_name"  disabled>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

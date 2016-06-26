@@ -1,0 +1,50 @@
+<section class="page-header">
+  <?= ViewHelpers::linkTo('/clientes', '<i class="fa fa-arrow-left"></i>', "class='btn btn-primary'"); ?>
+
+  <?= ViewHelpers::linkTo("/clientes/{$this->client->getId()}/editar", '<i class="fa fa-pencil-square-o"></i> Editar', "class='btn btn-primary'") ?>
+  <?= ViewHelpers::linkTo("/clientes/{$this->client->getId()}/deletar", '<i class="fa fa-times "></i> Deletar', "class='btn btn-primary'") ?>
+  <h4 class="pull-right"><i class="fa fa-file-text-o"></i> Detalhes: <small> Cliente ID: <?= $this->client->getId() ?></small></h4>
+</section>
+
+<section>
+  <?php if ($this->client->getType() == '1'): ?>
+    <div class="bottom-division">
+      <ul class="nav nav-pills nav-justified">
+        <li class="active"><a data-toggle="pill" href="#pf"><i class="fa fa-user"></i> Pessoa Física</a></li>
+      </ul>
+    </div>
+
+    <?php require '_form_disabled.phtml' ?>
+
+    <div class="row ">
+      <div class="col-md-12">
+        <div class="tab-content top-division">
+          <br>
+          <div id="pf" class="tab-pane fade in active ">
+            <?php require '_form_pf_disabled.phtml' ?>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <?php else: ?>
+    <div class="bottom-division">
+      <ul class="nav nav-pills nav-justified">
+        <li class="active"><a data-toggle="pill" href="#pj"><i class="fa fa-bank"></i> Pessoa Jurídica</a></li>
+      </ul>
+    </div>
+
+    <?php require '_form_disabled.phtml' ?>
+
+    <div class="row ">
+      <div class="col-md-12">
+        <div class="tab-content top-division">
+          <br>
+          <div id="pj" class="tab-pane fade in active ">
+            <?php require '_form_pj_disabled.phtml' ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php endif ?>
+</section>

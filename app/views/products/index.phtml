@@ -1,0 +1,45 @@
+
+<section class="page-header">
+  <?= ViewHelpers::linkTo('/produtos/novo', '<i class="fa fa-plus"></i> Novo Produto', "class='btn btn-primary'"); ?>
+
+  <form class="form-inline pull-right" role="form" action="<?= ViewHelpers::urlFor($this->action) ?>" method="GET">
+    <div class="input-group">
+      <input type="text" class="form-control" name="search" id="search_field" placeholder="Pesquisar Prouto" value="<?= $this->value ?>" >
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+      </span>
+    </div>
+  </form>
+</section>
+
+<section>
+  <div class="text-center">
+    <h3> <i class="fa fa-shopping-basket fa-2x"></i> Produtos<small> <?= $this->subtitle ?></small> </h3>
+  </div>
+
+  <table class="table table-hover table-bordered text-center ">
+    <thead>
+      <tr>
+        <th class="text-center">ID</i></th>
+        <th class="text-center">Nome <i class="fa fa-sort-desc"></th>
+          <th class="text-center">Categoria</th>
+          <th class="text-center">Preço</th>
+          <th class="text-center">Estoque</th>
+          <th class="text-center">Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($this->products as $product): ?>
+        <tr>
+          <td><?= $product->getId(); ?></td>
+          <td><?= ViewHelpers::truncate($product->getName(), 40); ?></td>
+          <td><?= $product->getCategory()->getName() ?></td>
+          <td> <?= ViewHelpers::currencyFormat($product->getSellingPrice()); ?></td>
+          <td> <?= $product->getAmount() ?></td>
+          <td><?= ViewHelpers::linkTo("/produtos/{$product->getId()}", '<i class="fa fa-file-text-o"></i>') ?></td>
+        </tr>
+        <?php endForeach; ?>
+      </tbody>
+    </table>
+  </section>

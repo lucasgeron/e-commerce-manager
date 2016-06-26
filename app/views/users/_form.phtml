@@ -1,0 +1,24 @@
+<form role="form" action="<?= ViewHelpers::urlFor($this->action) ?>" method="POST">
+
+  <div class="form-group input-group <?= $this->user->getErrors('name') ? 'has-error' : '' ?>">
+    <span class="input-group-addon">Nome</span>
+    <input type="text" class="form-control" name="user[name]" value="<?= $this->user->getName() ?>"
+    id="user_name" autofocus placeholder="Digite seu nome">
+  </div>
+  <p class="help-block"><?= $this->user->getErrors('name') ?></p>
+
+  <div class="form-group input-group <?= $this->user->getErrors('email') ? 'has-error' : '' ?>">
+    <span class="input-group-addon">Email</span>
+    <input type="text" class="form-control" name="user[email]" value="<?= $this->user->getEmail() ?>"
+    id="user_email" placeholder="Usuário@Servidor">
+  </div>
+  <p class="help-block"><?= $this->user->getErrors('email') ?></p>
+
+  <div class="form-group input-group <?= $this->user->getErrors('password') ? 'has-error' : '' ?>">
+    <span class="input-group-addon">Senha</span>
+    <input type="password" class="form-control" name="user[password]" id="user_password" placeholder="•••••">
+  </div>
+  <p class="help-block"><?= $this->user->getErrors('password') ?></p>
+
+  <button type="submit" class="btn btn-lg btn-primary btn-block"> <?= $this->submit ?></button>
+</form>

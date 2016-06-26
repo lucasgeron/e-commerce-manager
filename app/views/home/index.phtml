@@ -1,0 +1,7 @@
+<section>
+  <?php if (SessionHelpers::isLoggedIn()): ?>
+    <?= ViewHelpers::imageTag('splash.png', 'class="img-responsive"') ?>
+  <?php else: ?>
+    <?= ViewHelpers::linkTo('/login', ViewHelpers::imageTag('splash.png', 'class="img-responsive"')) ?>
+  <?php endif ?>
+</section>

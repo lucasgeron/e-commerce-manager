@@ -1,0 +1,53 @@
+<section class="page-header">
+  <div class="row">
+    <div class="col-md-12">
+      <?= ViewHelpers::linkTo("/clientes/{$this->client->getId()}", '<i class="fa fa-arrow-left"></i>', "class='btn btn-primary'"); ?>
+      <h4 class="pull-right"><i class="fa fa-pencil-square-o"></i> Editando: <small> Cliente ID: <?= $this->client->getId() ?></small></h4>
+    </div>
+  </div>
+</section>
+
+<section>
+  <?php if ($this->client->getType() == '1'): ?>
+    <div class="bottom-division">
+      <ul class="nav nav-pills nav-justified">
+        <li class="active"><a data-toggle="pill" href="#pf"><i class="fa fa-user"></i> Pessoa Física</a></li>
+      </ul>
+    </div>
+
+    <?php require '_form.phtml' ?>
+
+    <div class="row ">
+      <div class="col-md-12">
+        <div class="tab-content top-division">
+          <br>
+          <div id="pf" class="tab-pane fade in active ">
+            <?php require '_form_pf.phtml' ?>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <?php else: ?>
+    <div class="bottom-division">
+      <ul class="nav nav-pills nav-justified">
+        <li class="active"><a data-toggle="pill" href="#pj"><i class="fa fa-bank"></i> Pessoa Jurídica</a></li>
+      </ul>
+    </div>
+
+    <?php require '_form.phtml' ?>
+
+    <div class="row ">
+      <div class="col-md-12">
+        <div class="tab-content top-division">
+          <br>
+          <div id="pj" class="tab-pane fade in active ">
+            <?php require '_form_pj.phtml' ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <button type="submit" class="btn btn-primary"> <?= $this->submit ?></button>
+</section>

@@ -1,0 +1,79 @@
+<section>
+  <div class="text-center page-header">
+    <h3><?= $this->title ?></h3>
+  </div>
+
+  <div class="row">
+    <form role="form" action="<?= ViewHelpers::urlFor($this->action) ?>" method="GET">
+
+      <div class="col-md-4">
+        <div class="form-group input-group <?= $this->report->getErrors('first_date') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Data Inícial</span>
+          <input autofocus type="date" class="form-control" name="report[first_date]" value="<?= $this->report->getFirstDate() ?>" id="report_first_date">
+        </div>
+        <p class="help-block"><?= $this->report->getErrors('first_date') ?></p>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group input-group <?= $this->report->getErrors('last_date') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Data Final</span>
+          <input type="date" class="form-control" name="report[last_date]" value="<?= $this->report->getLastDate() ?>" id="report_last_date">
+        </div>
+        <p class="help-block"><?= $this->report->getErrors('last_date') ?></p>
+      </div>
+
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary"> Gerar Relatório</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section>
+  <?php if (isset($this->SellingRanking)): ?>
+    <table class="table table-hover table-bordered text-center ">
+      <thead>
+        <tr>
+          <th class="text-center">Posição</th>
+          <th class="text-center">Colaborador</th>
+          <th class="text-center">Total Pedidos</th>
+          <th class="text-center">Total Receita <i class="fa fa-sort-desc"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($this->SellingRanking as $key => $value): ?>
+            <tr>
+              <td> <?= $key+1 ?>˚ </td>
+              <td> <?= $value['name'] ?> </td>
+              <td> <?= $value['total_pedidos'] ?> </td>
+              <td> <?= ViewHelpers::currencyFormat($value['total_receita']) ?> </td>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    <?php endif ?>
+  </section>
+  <section>
+    <?php if (isset($this->SellingBalance)): ?>
+      <table class="table table-hover table-bordered text-center ">
+        <thead>
+          <tr>
+            <th class="text-center">Posição</th>
+            <th class="text-center">Produto</th>
+            <th class="text-center">Categoria</th>
+            <th class="text-center">Unidades Vendidas <i class="fa fa-sort-desc"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($this->SellingBalance as $key => $value): ?>
+              <tr>
+                <td> <?= $key+1 ?>˚ </td>
+                <td> <?= $value['product_name'] ?> </td>
+                <td> <?= $value['category_name'] ?> </td>
+                <td> <?= $value['unidades_vendidas'] ?> </td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      <?php endif ?>
+    </section>

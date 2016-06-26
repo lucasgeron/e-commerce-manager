@@ -1,0 +1,46 @@
+<form role="form" action="<?= ViewHelpers::urlFor($this->action) ?>" method="POST">
+
+  <div class="form-group input-group <?= $this->product->getErrors('name') ? 'has-error' : '' ?>">
+    <span class="input-group-addon">Nome</span>
+    <input type="text" class="form-control" name="product[name]" value="<?= $this->product->getName() ?>" id="product_name" autofocus>
+  </div>
+  <p class="help-block"><?= $this->product->getErrors('name') ?></p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group input-group <?= $this->product->getErrors('category_id') ? 'has-error' : '' ?>">
+        <span class="input-group-addon">Categoria</span>
+        <select  class="form-control" name="product[category_id]" id="product_category">
+          <option value=""> Selecione uma categoria </option>
+          <?php foreach ($this->categories as $category): ?>
+            <option value='<?= $category->getId() ?>' <?= ($category->getid() === $this->product->getCategoryId()) ? 'selected' : '' ?> >
+              <?= $category->getName() ?>
+            </option>
+            <?php endForeach; ?>
+          </select>
+        </div>
+        <p class="help-block"><?= $this->product->getErrors('category_id') ?></p>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group input-group <?= $this->product->getErrors('amount') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Unidades em Estoque</span>
+          <input type="number" class="form-control" name="product[amount]" value="<?= $this->product->getAmount() ?>"
+          id="product_amount" autofocus>
+        </div>
+        <p class="help-block"><?= $this->product->getErrors('amount') ?></p>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group input-group <?= $this->product->getErrors('sellingprice') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Preço de Venda</span>
+          <span class="input-group-addon">R$</span>
+          <input type="text" class="form-control" name="product[sellingprice]" value="<?= $this->product->getSellingprice(); ?>"
+          id="product_sellingprice" autofocus>
+        </div>
+        <p class="help-block"><?= $this->product->getErrors('sellingprice') ?></p>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary"> <?= $this->submit ?></button>
+  </form>

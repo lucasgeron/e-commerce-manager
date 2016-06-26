@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group input-group <?= $this->client->getErrors('cnpj') ? 'has-error' : '' ?>">
+      <span class="input-group-addon">CNPJ</span>
+      <input type="text" class="form-control" name="client[cnpj]" value="<?= $this->client->getCnpj() ?>" id="client_cnpj">
+    </div>
+    <p class="help-block"><?= $this->client->getErrors('cnpj') ?></p>
+  </div>
+
+  <div class="col-md-8">
+    <div class="form-group input-group <?= $this->client->getErrors('social_reason') ? 'has-error' : '' ?>">
+      <span class="input-group-addon">Razão Social</span>
+      <input type="text" class="form-control" name="client[social_reason]" value="<?= $this->client->getSocialReason() ?>" id="client_social_reason">
+    </div>
+    <p class="help-block"><?= $this->client->getErrors('social_reason') ?></p>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<section class="page-header">
+
+  <?= ViewHelpers::linkTo('/clientes/novo', '<i class="fa fa-plus"></i> Novo Cliente ', "class='btn btn-primary'"); ?>
+
+  <form class="form-inline pull-right" role="form" action="<?= ViewHelpers::urlFor($this->action) ?>" method="GET">
+    <div class="input-group">
+      <input type="text" class="form-control" name="search" id="search_field" placeholder="Pesquisar Cliente" value="<?= $this->value ?>">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+      </span>
+    </div>
+  </form>
+</section>
+
+<section>
+  <div class="text-center">
+    <h3> <i class="fa fa-users fa-2x"></i> Clientes<small> <?= $this->subtitle ?> </small> </h3>
+  </div>
+
+  <table class="table table-hover table-bordered text-center ">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Nome <i class="fa fa-sort-desc"></i></th>
+        <th class="text-center">Detalhes</th>
+        <th class="text-center">Novo Pedido</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      foreach ($this->clients as $client): ?>
+      <tr>
+        <td><?= $client->getId(); ?></td>
+        <td><?= ViewHelpers::truncate($client->getName(), 50); ?></td>
+        <td><?= ViewHelpers::linkTo("/clientes/{$client->getId()}", '<i class="fa fa-file-text-o"></i>') ?></td>
+        <td><?= ViewHelpers::linkTo("/clientes/{$client->getId()}/pedidos/novo", '<i class="fa fa-plus"></i>') ?></td>
+      </tr>
+      <?php endForeach; ?>
+    </tbody>
+  </table>
+</section>

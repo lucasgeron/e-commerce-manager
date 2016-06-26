@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group input-group">
+      <span class="input-group-addon"> Pedido ID</span>
+      <input disabled type="text" class="form-control" name="client[name]" value="<?= $this->order->getId() ?>" id="order_id">
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon">Atendente</span>
+      <input disabled type="text" class="form-control" name="client[name]" value="<?= $this->order->getuser()->getName() ?>" id="order_id">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group input-group">
+      <span class="input-group-addon">Email</span>
+      <input disabled type="text" class="form-control" name="client[name]" value="<?= $this->order->getuser()->getEmail() ?>" id="order_id">
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon">Data</span>
+      <input disabled type="text" class="form-control" name="client[name]" value="<?= ViewHelpers::dateFormat($this->order->getCreatedAt()) ?>" id="order_id">
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover table-bordered text-center ">
+      <thead>
+        <tr>
+          <th class="text-center">Produto</i></th>
+          <th class="text-center">Categoria</th>
+          <th class="text-center">Qtde</th>
+          <th class="text-center">Preço (Und.)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach($this->order->getProducts() as $product): ?>
+          <tr>
+            <td><?= $product->getName() ?></td>
+            <td><?= $product->getCategory()->getName() ?></td>
+            <td><?= $product->getAmount() ?></td>
+            <td><?= ViewHelpers::currencyFormat($product->getSellingPrice()) ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+
+    <div class="bottom-division">
+      <h3 class="pull-right"><small> Total do Pedido:</small> <?= ViewHelpers::currencyFormat($this->order->getTotal($this->order->getId())) ?>
+      </div>
+    </div>
+  </div>

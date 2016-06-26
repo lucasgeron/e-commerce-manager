@@ -1,0 +1,101 @@
+
+<section class="page-header">
+  <?= ViewHelpers::linkTo('/clientes', '<i class="fa fa-plus"></i> Novo Pedido ', "class='btn btn-primary'"); ?>
+
+  <form class="form-inline pull-right" role="form" action="<?= ViewHelpers::urlFor($this->action) ?>" method="GET">
+    <div class="input-group">
+      <input type="text" class="form-control" name="search" id="search_field" placeholder="Pesquisar Cliente" value="<?= $this->value ?>">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+      </span>
+    </div>
+  </form>
+</section>
+
+<section>
+  <div class="text-center">
+    <h3> <i class="fa fa-shopping-cart fa-2x"></i> Pedidos<small> <?= $this->subtitle ?> </small> </h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Pedidos Abertos
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <table class="table table-hover table-bordered text-center ">
+                <thead>
+                  <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Cliente</i></th>
+                    <th class="text-center">Data <i class="fa fa-sort-desc"></th>
+                      <th class="text-center">Detalhes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($this->orders as $order): ?>
+                      <?php if($order->getStatus() == 0): ?>
+                        <tr>
+                          <td><?= $order->getId(); ?></td>
+                          <td><?= $order->getClient()->getName(); ?></td>
+                          <td><?= ViewHelpers::dateFormat($order->getCreatedAt()); ?></td>
+                          <td><?= ViewHelpers::linkTo("/pedidos/{$order->getId()}", '<i class="fa fa-file-text-o"></i>') ?></td>
+                        </tr>
+                      <?php endif ?>
+                      <?php endForeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Pedidos Fechados
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <table class="table table-hover table-bordered text-center ">
+                    <thead>
+                      <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Cliente</i></th>
+                        <th class="text-center">Data <i class="fa fa-sort-desc"></th>
+                        <th class="text-center">Detalhes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php foreach ($this->orders as $order): ?>
+                          <?php if($order->getStatus() == 1): ?>
+                            <tr>
+                              <td><?= $order->getId(); ?></td>
+                              <td><?= $order->getClient()->getName(); ?></td>
+                              <td><?= ViewHelpers::dateFormat($order->getCreatedAt()); ?></td>
+                              <td><?= ViewHelpers::linkTo("/pedidos/{$order->getId()}", '<i class="fa fa-file-text-o"></i>') ?></td>
+                            </tr>
+                          <?php endif ?>
+                          <?php endForeach; ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>

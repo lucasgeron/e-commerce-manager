@@ -1,0 +1,77 @@
+<form role="form" action="<?= ViewHelpers::urlFor($this->action) ?>" method="POST">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group input-group <?= $this->client->getErrors('name') ? 'has-error' : '' ?>">
+        <span class="input-group-addon">* Nome Completo</span>
+        <input type="text" class="form-control" name="client[name]" value="<?= $this->client->getName() ?>" id="client_name" autofocus>
+      </div>
+      <p class="help-block"><?= $this->client->getErrors('name') ?></p>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group input-group <?= $this->client->getErrors('city_id') ? 'has-error' : '' ?>">
+        <span class="input-group-addon">* Cidade</span>
+        <select  class="form-control" name="client[city_id]" id="client_city">
+          <option value=""> Selecione uma Cidade </option>
+          <?php foreach ($this->cities as $city): ?>
+            <option value='<?= $city->getId() ?>' <?= ($city->getid() === $this->client->getCityId()) ? 'selected' : '' ?> >
+              <?= $city->getName() ?>
+            </option>
+            <?php endForeach; ?>
+          </select>
+        </div>
+        <p class="help-block"><?= $this->client->getErrors('city_id') ?></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group input-group <?= $this->client->getErrors('address') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Endereço</span>
+          <input type="text" class="form-control" name="client[address]" value="<?= $this->client->getAddress() ?>" id="client_address">
+        </div>
+        <p class="help-block"><?= $this->client->getErrors('address') ?></p>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group input-group <?= $this->client->getErrors('address_number') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Número</span>
+          <input type="text" class="form-control" name="client[address_number]" value="<?= $this->client->getAddressNumber() ?>" id="client_address_number">
+        </div>
+        <p class="help-block"><?= $this->client->getErrors('address_number') ?></p>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group input-group <?= $this->client->getErrors('district') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Bairro</span>
+          <input type="text" class="form-control" name="client[district]" value="<?= $this->client->getDistrict() ?>" id="client_district">
+        </div>
+        <p class="help-block"><?= $this->client->getErrors('district') ?></p>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group input-group <?= $this->client->getErrors('address_cep') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">CEP</span>
+          <input type="text" class="form-control" name="client[address_cep]" value="<?= $this->client->getAddressCep() ?>" id="client_address_cep">
+        </div>
+        <p class="help-block"><?= $this->client->getErrors('address_cep') ?></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group input-group <?= $this->client->getErrors('phone') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Telefone</span>
+          <input type="text" class="form-control" name="client[phone]" value="<?= $this->client->getPhone() ?>" id="client_phone">
+        </div>
+        <p class="help-block"><?= $this->client->getErrors('phone') ?></p>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group input-group <?= $this->client->getErrors('email') ? 'has-error' : '' ?>">
+          <span class="input-group-addon">Email</span>
+          <input type="text" class="form-control" name="client[email]" value="<?= $this->client->getEmail() ?>" id="client_email">
+        </div>
+        <p class="help-block"><?= $this->client->getErrors('email') ?></p>
+      </div>
+    </div>

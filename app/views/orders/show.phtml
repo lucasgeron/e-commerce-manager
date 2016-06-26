@@ -1,0 +1,52 @@
+<section class="page-header">
+  <?= ViewHelpers::linkTo('/pedidos', '<i class="fa fa-arrow-left"></i>', "class='btn btn-primary'"); ?>
+
+  <?= ViewHelpers::linkTo("/pedidos/{$this->order->getId()}/deletar", '<i class="fa fa-remove"></i> Deletar', "class='btn btn-primary'"); ?>
+  <h4 class="pull-right"><i class="fa fa-file-text-o"></i> Detalhes: <small> Pedido ID: <?= $this->order->getId() ?></small></h4>
+</section>
+
+<section>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Dados do Pedido
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <?php require '_order_infos.phtml'; ?>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                Dados do Cliente
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <?php require '_client_infos.phtml'; ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <?= ViewHelpers::linkTo("/pedidos/{$this->order->getId()}/fechar-pedido'", "<button class='btn btn-primary pull-right'>Fechar Pedido</button>"); ?>
+    </div>
+  </div>
+</section>
